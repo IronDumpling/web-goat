@@ -19,17 +19,17 @@ website is opened as well, it will transfer the recipient's money with the amoun
 Part 4 Explanation:
 The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page.
 We could use the CSRF method by injecting a <script> and two <iframe> elements with malicious "src" attributes. 
-First, the <iframe> element's "src" prompts a transfer, and the <script> sets the URL of the second <iframe> to 
-confirm the transfer. Each URL exploits the vulnerability of the "transfer" field, which can specify the amount 
-to be transferred and confirm the transfer. 
+First, the <iframe> element's "src" prompts a transfer. Then, the <script> sets the URL of the second <iframe> 
+to confirm the transfer. The URL exploits the vulnerability of the "transfer" field to specify the amount to be 
+transferred and also confirm the transfer. 
 
 Part 5 Explanation:
 The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page.
 We could use the CSRF method by injecting an <script> element and two <iframe> elements with malicious "src" 
-attributes. The first <iframe>'s "src" starts a transfer. Then the <script> sets the second <iframe>'s "src" 
-which passes the token value taken through the onload() function. We use onload() function to deal with the 
-same origin policy. The <script> element sets the URL of the second <iframe>, then the second <iframe> will 
-reload and finish the attack to transfer values specified in the URL. 
+attributes. The first <iframe>'s "src" starts a transfer. Then the <script> passes the token value taken 
+through the onload() function of the first <iframe>. We also use onload() function to deal with the same 
+origin policy. The <script> element then sets the URL of the second <iframe> using the token. Finally, the 
+second <iframe> will reload and finish the attack to transfer values specified in the URL. 
 
 Part 6 Explanation:
 
