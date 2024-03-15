@@ -13,8 +13,8 @@ Part 2 Explanation:
 Part 3 Explanation:
 The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page. 
 We could use the CSRF method by injecting the <img> element with a malicious "src" attribute. The malicious 
-src exploits the vulnerability of a "transfer" field. When the <img> element is loaded and the online banking 
-website is opened as well, it will transfer the recipient's money with the amount specified by "transfer".
+src exploits the vulnerability of the "transfer" field. When the <img> element is loaded and the online 
+banking website is opened as well, it will transfer the user's money with the amount specified by "transfer".
 
 Part 4 Explanation:
 The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page.
