@@ -3,14 +3,33 @@
 
 
 Part 1 Explanation:
+The vulnerability we could exploit is the search bar on the page. 
+We could use the XSS method by injecting the HTML code of a fake login form.
+The credentials submitted through the fake form will be uploaded to the WebGoat's server. 
+Then the hackers could use the credentials to do whatever they want.
 
 Part 2 Explanation:
 
 Part 3 Explanation:
+The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page. 
+We could use the CSRF method by injecting the <img> element with a malicious "src" attribute. The malicious 
+src exploits the vulnerability of a "transfer" field. When the <img> element is loaded and the online banking 
+website is opened as well, it will transfer the recipient's money with the amount specified by "transfer".
 
 Part 4 Explanation:
+The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page.
+We could use the CSRF method by injecting a <script> and two <iframe> elements with malicious "src" attributes. 
+First, the <iframe> element's "src" prompts a transfer, and the <script> sets the URL of the second <iframe> to 
+confirm the transfer. Each URL exploits the vulnerability of the "transfer" field, which can specify the amount 
+to be transferred and confirm the transfer. 
 
 Part 5 Explanation:
+The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page.
+We could use the CSRF method by injecting an <script> element and two <iframe> elements with malicious "src" 
+attributes. The first <iframe>'s "src" starts a transfer. Then the <script> sets the second <iframe>'s "src" 
+which passes the token value taken through the onload() function. We use onload() function to deal with the 
+same origin policy. The <script> element sets the URL of the second <iframe>, then the second <iframe> will 
+reload and finish the attack to transfer values specified in the URL. 
 
 Part 6 Explanation:
 
