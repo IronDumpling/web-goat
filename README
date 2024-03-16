@@ -32,8 +32,35 @@ origin policy. The <script> element then sets the URL of the second <iframe> usi
 second <iframe> will reload and finish the attack to transfer values specified in the URL. 
 
 Part 6 Explanation:
+Knowing that the complete instruction is SELECT * FROM user_data WHERE last_name = '______', to print out all rows,
+we need to make the condition always true in any cases. Given that we cannot make last_name always equal to some string, 
+the strategy should be append another condition to it with OR. In this way, if the second condition holds to be true, the
+row will be printed out. Also considering the instruction ends with "'", we selected the logical expression of strings to 
+complete the pair of "''". In this way, ' OR '1' = '1 became the solution.
 
 Part 7 Explanation:
+For both sections of this part, the first thing is to complete the syntax of the first SQL operation. Appended to
+that, there should be corresponding SQL operations:
+For Section 1, UPDATE was used to update the table of employee so that any rows with userid=101 would have their salary 
+changed to 999.
+For Section 2, CREATE TRIGGER was used. This could be completed in a straight-forward way by filling in the table name 
+employee, set the email address to the desired one, and ensure the condition is set to be userid = NEW.userid for each 
+newly added term.
 
 Part 8 Explanation:
-
+SQL injections used: 101 AND EXISTS (SELECT * FROM credit WHERE cc_number=1234123412341234 AND pin=3318)
+Firstly, by binary search using SQL injections such as 101 AND EXISTS (SELECT * FROM credit WHERE cc_number=1234123412341234 AND pin<5000)
+to scope down the valid range.
+Here is a complete record of my experiments:
+< 5000 Valid   (0    - 5000)
+< 2500 Invalid (2500 - 5000)
+< 3750 Valid   (2500 - 3750)
+< 3125 Invalid (3125 - 3750)
+< 3438 Valid   (3125 - 3438)
+< 3282 Invalid (3282 - 3438)
+< 3360 Valid   (3282 - 3360)
+< 3321 Valid   (3282 - 3321)
+< 3302 Invalid (3302 - 3321)
+< 3312 Invalid (3312 - 3321)
+After that, the valid range is relatively small. By trying 101 AND EXISTS (SELECT * FROM credit WHERE cc_number=1234123412341234 AND pin=POSSIBLEVALUE)
+from 3312 to 3321 and check if it prompts to be valid. Finally 3318 was found.
